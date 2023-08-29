@@ -11,6 +11,10 @@
 <div class="clearfix">
   <div class="float-left">
 
+    <div>
+      <h1>BoxCar2D: Algoritmos Genéticos</h1>
+    </div>
+
     <canvas id="mainbox" width="800" height="400"></canvas>
 
     <div class="clearfix">
@@ -50,44 +54,36 @@
   <div class="float-left">
 
     <div id="data">
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="X8VB9NDYWQDPE">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit"
-               alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
-      </form>
-      <br/>
-
+      
       <div class="buttons">
-        <input id="save-progress" type="button" value="Save Population" />
-        <input id="restore-progress" type="button" value="Restore Saved Population" />
-        <input id="toggle-display" type="button" value="Surprise!" />
-        <input id="new-population" type="button" value="New Population" />
-        <input id="fast-forward" type="button" value="Fast Forward" />
+        <input id="save-progress" type="button" value="Salvar população" />
+        <input id="restore-progress" type="button" value="Carregar população salva" />
+        <input id="toggle-display" type="button" value="Surpresa!" />
+        <input id="new-population" type="button" value="Nova população" />
+        <input id="fast-forward" type="button" value="Avançar" />
       </div>
 
       <div>
-        <label>Create new world with seed</label><br>
-        <input type="text" placeholder="Enter any string" id="newseed"/>
-        <input id="confirm-reset" type="button" value="Go!" />
+        <label>Criar um novo mundo com uma seed</label><br>
+        <input type="text" placeholder="Digite uma string" id="newseed"/>
+        <input id="confirm-reset" type="button" value="Enviar!" />
       </div>
 
       <table>
         <tr>
-          <td>Generation</td><td><div id="generation"></div></td>
+          <td>Geração</td><td><div id="generation"></div></td>
         </tr>
         <tr>
-          <td>Cars alive</td><td><div id="population"></div></td>
+          <td>Carros vivos</td><td><div id="population"></div></td>
         </tr>
         <tr>
-          <td>Distance</td><td><div id="distancemeter"></div></td>
+          <td>Distância</td><td><div id="distancemeter"></div></td>
         </tr>
         <tr>
-          <td>Height</td><td><div id="heightmeter"></div></td>
+          <td>Altura</td><td><div id="heightmeter"></div></td>
         </tr>
         <tr>
-          <td>Mutation rate:</td>
+          <td>Taxa de mutação:</td>
           <td>
             <select id="mutationrate" >
               <option value="0">0%</option>
@@ -107,7 +103,7 @@
           </td>
         </tr>
         <tr>
-          <td>Mutation size:</td>
+          <td>Tamanho da mutação:</td>
           <td>
             <select id="mutationsize" >
               <option value="0">0%</option>
@@ -127,31 +123,31 @@
           </td>
         </tr>
         <tr>
-          <td>Floor:</td>
+          <td>Terreno:</td>
           <td>
             <select id="floor" >
-              <option value="0" selected="selected">fixed</option>
-              <option value="1">mutable</option>
+              <option value="0" selected="selected">fixo</option>
+              <option value="1">mutável</option>
             </select>
           </td>
         </tr>
         <tr>
-          <td>Gravity:</td>
+          <td>Gravidade:</td>
           <td>
             <select id="gravity" >
-              <option value="24.8">Jupiter (24.8)</option>
-              <option value="11.2">Neptune (11.2)</option>
-              <option value="10.4">Saturn (10.4)</option>
-              <option value="9.81" selected="selected">Earth (9.81)</option>
-              <option value="8.9">Venus (8.9)</option>
-              <option value="8.7">Uranus (8.7)</option>
-              <option value="3.7">Mars/Mercury (3.7)</option>
-              <option value="1.6">Moon (1.6)</option>
+              <option value="24.8">Júpiter (24.8)</option>
+              <option value="11.2">Netuno (11.2)</option>
+              <option value="10.4">Saturno (10.4)</option>
+              <option value="9.81" selected="selected">Terra (9.81)</option>
+              <option value="8.9">Vênus (8.9)</option>
+              <option value="8.7">Urano (8.7)</option>
+              <option value="3.7">Marte/Mercúrio (3.7)</option>
+              <option value="1.6">Lua (1.6)</option>
             </select>
           </td>
         </tr>
         <tr>
-          <td>Elite clones:</td>
+          <td>Tamanho da "Elite":</td>
           <td>
             <select id="elitesize" >
               <option value="0">0</option>
@@ -172,7 +168,7 @@
 
       <br>
 
-      <input type="button" value="Watch Leader" onclick="cw_setCameraTarget(-1)"/>
+      <input type="button" value="Assistir líder" onclick="cw_setCameraTarget(-1)"/>
       <div id="health"></div>
       <div id="cars"></div>
     </div>
@@ -182,100 +178,98 @@
 
 
 <div id="explanation">
-  <h3>But what is it?</h3>
-  <p>The program uses a simple genetic algorithm to evolve random two-wheeled shapes into cars over generations. Loosely
-    based on <a href="http://boxcar2d.com/">BoxCar2D</a>, but
-    written from scratch, only using the same physics engine (<a href="http://box2d.org/">box2d</a>).<br/>
-    seedrandom.js written by <a href="http://davidbau.com/">David Bau</a>. (thanks!)</p>
+  <h3>Mas, o que é isto?</h3>
+  <p>O programa usa um algoritmo genético simples para evoluir formas aleatórias de duas rodas em carros ao longo de gerações. 
+    Brevemente, baseado no <a href="http://boxcar2d.com/">BoxCar2D</a>, mas escrito do zero, apenas usando a mesma <i>engine</i> de física (<a href="http://box2d.org/">box2d</a>).<br/>
+    seedrandom.js escrita por <a href="http://davidbau.com/">David Bau</a>. (Obrigado!)</p>
 
 
-  <h3>Controls</h3>
+  <h3>Controles</h3>
   <table>
     <tr>
-      <th>Save Population</th>
-      <td>Saves current population locally.</td>
+      <th>Salvar população</th>
+      <td>Salva a poulação atual localmente.</td>
     </tr>
     <tr>
-      <th>Restore Saved Population</th>
-      <td>Restore a previously saved population.</td>
+      <th>Carregar população salva.</th>
+      <td>Restaura uma população salva anteriormente.</td>
     </tr>
     <tr>
-      <th>Suprise</th>
-      <td>Toggles drawing, makes the simulation faster.</td>
+      <th>Surpresa</th>
+      <td>Suspende a animação dos carros, faz a simulação executar mais rápida.</td>
     </tr>
     <tr>
-      <th>New Population</th>
-      <td>Keeps the generated track and restarts the whole car population.</td>
+      <th>Nova população</th>
+      <td>Mantém o que foi gerado e reinicia toda população de carros.</td>
     </tr>
     <tr>
-      <th>Create new world with seed</th>
-      <td>The same seed always creates the same track, so you can agree on a seed with your friends
-        and compete. :)
+      <th>Criar um novo mundo com uma seed</th>
+      <td>A mesma seed sempre vai gerar as mesmas pistas, enão você pode acertar uma seed com seus amigos e competir.
       </td>
     </tr>
     <tr>
-      <th>Mutation rate</th>
-      <td>The chance that each gene in each individual will mutate to a random value when a new generation is
-        born.
+      <th>Taxa de mutação</th>
+      <td>A chance que cada gene em cada indivíduo irá mutar para um valor aleatório quando uma nova geração é criada.
       </td>
     </tr>
     <tr>
-      <th>Mutation size</th>
-      <td>The range each gene can mutate into. Lower numbers mean the gene will have values closer to the
-        original.
+      <th>Tamanho da mutação</th>
+      <td>O intervalo no qual cada gene pode sofrer mutação. Números baixos indicam que o gene terá valores mais próximo do original.
       </td>
     </tr>
     <tr>
-      <th>Elite clones</th>
-      <td>The top n cars that will be copied over to the next generation.</td>
+      <th>Tamano da "Elite"</th>
+      <td>Top n carros que serão copiados para a próxima geração.</td>
     </tr>
     <tr>
-      <th>View top replay</th>
-      <td>Pause the current simulation and show the top performing car. Click a second time to resume
-        simulation.
+      <th>Para simulação</th>
+      <td>Pare a simulação atual e mostre o melhor carro. Clique uma segunda vez para retornar a simulação.
       </td>
     </tr>
   </table>
 
-  <h3>Graph</h3>
+  <h3>Gráfico</h3>
   <table>
     <tr>
-      <th>Red</th>
-      <td>Top score in each generation</td>
+      <th>Vermelho</th>
+      <td>Melhor valor de fitness encontrado em cada geração.</td>
     </tr>
     <tr>
-      <th>Green</th>
-      <td>Average of the top 10 cars in each generation</td>
+      <th>Verde</th>
+      <td>Média da fitness dos top 10 carros em cada geração.</td>
     </tr>
     <tr>
-      <th>Blue</th>
-      <td>Average of the entire generation</td>
+      <th>Azul</th>
+      <td>Média da fitness de toda geração.</td>
     </tr>
   </table>
 
-  <h3>Genome</h3>
+  <h3>Genoma</h3>
   <p>
-    The genome consists of:
+    O genoma consiste de:
   </p>
   <ul>
-    <li>Shape (8 genes, 1 per vertex)</li>
-    <li>Wheel size (2 genes, 1 per wheel)</li>
-    <li>Wheel position (2 genes, 1 per wheel)</li>
-    <li>Wheel density (2 genes, 1 per wheel) darker wheels mean denser wheels</li>
-    <li>Chassis density (1 gene) darker body means denser chassis</li>
+    <li>Forma (8 genes, 1 por vértice)</li>
+    <li>Tamanho da roda (2 genes, 1 por roda)</li>
+    <li>Posição da roda (2 genes, 1 por roda)</li>
+    <li>Densidade da roda (2 genes, 1 por roda) rodas mais escuras significam rodas mais densas</li>
+    <li>Densidade do chassi (1 gene) corpo mais escuro significa chassi mais denso</li>
   </ul>
 
-  <h3>Blurb</h3>
-  <p>This is not as deterministic as it should be, so your best car may not perform as well as it once did. The terrain
-    gets more complex with distance.<br/>
-    I'm not in the mood to deal with checking if all scripts have loaded before running, so refresh the page if things
-    seem whack.</p>
+  <h3>Descrição</h3>
+  <p>Isso não é tão determinístico quanto deveria ser, então seu melhor carro pode não ter um desempenho tão bom quanto antes. O terreno fica mais complexo com a distância.<br/>
+Não estou com vontade de verificar se todos os scripts foram carregados antes da execução, então atualize a página se as coisas parecerem ruins.</p>
 
   <h3>GitHub</h3>
-  <p>The code is now on a <a href="https://github.com/red42/HTML5_Genetic_Cars">GitHub repository</a>. Feel free to
-    contribute!</p>
+  <p>Originalmente escrito por <a href="http://rednuht.org">este cara</a>, agora com contribuições de pacientes pessoas no GitHub. Sinta-se livrre para contribuir com o código original disponível <a href="https://github.com/red42/HTML5_Genetic_Cars">neste repositório do Github</a>.</p>
+  
+  <p>Este código é um Fork criado por Adolfo Guimarães do repositório original. O fork possui as seguintes modificações:
+    <ul>
+      <li><strong>28/08/23:</strong> Tradução para o Português (BR)</li>
+    </ul>
 
-  <p>Originally written by <a href="http://rednuht.org">this guy</a>, now with contributions from patient people at GitHub.</p>
+  </p>
+
 </div>
 
 <div name="minimapmarker" class="minimapmarker"></div>
